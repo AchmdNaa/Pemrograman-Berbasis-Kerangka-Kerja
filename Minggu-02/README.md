@@ -191,10 +191,12 @@ dotnet run
 ```
 
 ### Dokumentasi Hasil Run
-![Dokumentasi Hasil Run](DataMahasiswa/images/MenuUtama.png)
+<img width="602" height="482" alt="Cuplikan layar 2026-09-22 222653" src="https://github.com/user-attachments/assets/514551b4-dfd5-4b08-ba6c-ad33265c10d4" />
+
 
 ### Dokumentasi Tambah Data Mahasiswa 1
-![Tambah 1](DataMahasiswa/images/Tambah.png)
+<img width="601" height="495" alt="Cuplikan layar 2026-09-22 230033" src="https://github.com/user-attachments/assets/703ca433-a3bd-46bc-a241-4aaa0bd8be63" />
+
 
 ### Dokumentasi Tambah Data Mahasiswa 2
 ![Tambah 2](DataMahasiswa/images/Tambah2.png)
@@ -203,19 +205,20 @@ dotnet run
 ![Tampilkan Data](DataMahasiswa/images/Tampilkan.png)
 
 ### Dokumentasi Cari Data (berhasil)
-![Cari Berhasil](DataMahasiswa/images/Cari.png)
+<img width="293" height="272" alt="Cuplikan layar 2026-09-22 230335" src="https://github.com/user-attachments/assets/fdf86b3d-baa5-41c0-a116-f9fe67d77798" />
+
 
 ### Dokumentasi Cari Data (gagal)
-![Cari Gagal](DataMahasiswa/images/CariGagal.png)
+<img width="421" height="198" alt="Cuplikan layar 2026-09-22 230419" src="https://github.com/user-attachments/assets/c7cd9f8d-8456-4673-938d-4bea3cda80cb" />
+
 
 ### Dokumentasi Hapus Data (berhasil)
-![Hapus Berhasil](DataMahasiswa/images/Hapus.png)
+<img width="327" height="197" alt="Cuplikan layar 2026-09-22 230441" src="https://github.com/user-attachments/assets/b831adf2-b81e-422d-9d27-e51fc2dcdca1" />
+
 
 ### Dokumentasi Data Setelah Dihapus
-![Data Setelah Dihapus](DataMahasiswa/images/SetelahHapus.png)
+<img width="603" height="491" alt="Cuplikan layar 2026-09-22 230506" src="https://github.com/user-attachments/assets/89cc0b76-db27-4688-9eef-170c921be46e" />
 
-### Dokumentasi Keluar
-![Keluar](DataMahasiswa/images/Keluar.png)
 
 ---
 
