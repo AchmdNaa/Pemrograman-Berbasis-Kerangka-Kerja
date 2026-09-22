@@ -1,19 +1,28 @@
-# Tugas Pemrograman Berbasis Kerangka Kerja (PBKK) W2
+# Tugas Pemrograman Berbasis Kerangka Kerja (PBKK) — Minggu 2
 
-**Identitas Mahasiswa:**
-* **Nama:** Achmad Najwa
-* **NIM:** 5025231265
-* **Departemen:** Teknik Informatika
+**Nama:** Achmad Najwa
+**NIM:** 5025231265
+**Departemen:** Teknik Informatika
+
+---
+
+## Daftar Isi
+
+1. [Landasan Teori: Keunggulan Aplikasi Desktop](#1-landasan-teori-keunggulan-aplikasi-desktop)
+2. [HelloWorld!](#2-helloworld)
+3. [Sistem Data Mahasiswa (Console Application)](#3-sistem-data-mahasiswa-console-application)
+4. [Sistem Data Mahasiswa (UI)](#4-sistem-data-mahasiswa-ui)
 
 ---
 
 ## 1. Landasan Teori: Keunggulan Aplikasi Desktop
 
 Meskipun aplikasi berbasis web dan seluler berkembang pesat, aplikasi desktop tetap menjadi pilihan utama untuk berbagai skenario kerja tertentu karena keunggulan berikut:
-* **Efisiensi & Performa:** Eksekusi komputasi berat dan logika kompleks di sisi klien (*client-side*) berjalan jauh lebih cepat tanpa overhead latensi jaringan.
-* **Integrasi Sistem & Hardware Lokal:** Akses langsung ke komponen perangkat keras (port serial, file system lokal, printer, periferal) tanpa restriksi izin browser atau hambatan firewall jaringan.
-* **Manajemen Threading Efisien:** Pemanfaatan multithreading untuk tugas asinkron berjalan optimal langsung di atas manajemen thread sistem operasi lokal.
-* **Kemudahan Pengembangan & Debugging:** Antarmuka Windows Forms didukung alat pelacakan galat (*debugging*) yang matang dan stabil.
+
+- **Efisiensi & Performa** — Eksekusi komputasi berat dan logika kompleks di sisi klien (*client-side*) berjalan jauh lebih cepat tanpa overhead latensi jaringan.
+- **Integrasi Sistem & Hardware Lokal** — Akses langsung ke komponen perangkat keras (port serial, file system lokal, printer, periferal) tanpa restriksi izin browser atau hambatan firewall jaringan.
+- **Manajemen Threading Efisien** — Pemanfaatan multithreading untuk tugas asinkron berjalan optimal langsung di atas manajemen thread sistem operasi lokal.
+- **Kemudahan Pengembangan & Debugging** — Antarmuka Windows Forms didukung alat pelacakan galat (*debugging*) yang matang dan stabil.
 
 ---
 
@@ -21,7 +30,8 @@ Meskipun aplikasi berbasis web dan seluler berkembang pesat, aplikasi desktop te
 
 ### Langkah Pengerjaan
 
-Jalankan code berikut secara berurutan pada terminal:
+Jalankan perintah berikut secara berurutan pada terminal:
+
 ```powershell
 dotnet new console -n HelloWorld
 cd HelloWorld
@@ -29,7 +39,8 @@ dotnet run
 ```
 
 ### Dokumentasi Hasil Run
-<img width="1097" height="281" alt="Cuplikan layar 2026-09-22 225033" src="https://github.com/user-attachments/assets/d628676e-5376-4fef-8f7e-6b48867ca15a" />
+
+<img width="1097" height="281" alt="Hasil run HelloWorld" src="https://github.com/user-attachments/assets/d628676e-5376-4fef-8f7e-6b48867ca15a" />
 
 ---
 
@@ -37,14 +48,16 @@ dotnet run
 
 ### Langkah Pengerjaan
 
-Jalankan code berikut secara berurutan pada terminal:
+Jalankan perintah berikut secara berurutan pada terminal:
+
 ```powershell
 dotnet new console -n DataMahasiswa
 cd DataMahasiswa
 code .
 ```
 
-Buka File `Program.cs` dan isi dengan code berikut:
+Buka file `Program.cs`, lalu isi dengan kode berikut:
+
 ```csharp
 using System;
 using System.Collections.Generic;
@@ -185,57 +198,62 @@ namespace DataMahasiswa
 }
 ```
 
-Save (ctrl + s) dan run dengan:
+Simpan (`Ctrl+S`) lalu jalankan dengan:
+
 ```powershell
 dotnet run
 ```
 
 ### Dokumentasi Hasil Run
-<img width="602" height="482" alt="Cuplikan layar 2026-09-22 222653" src="https://github.com/user-attachments/assets/514551b4-dfd5-4b08-ba6c-ad33265c10d4" />
 
+<img width="602" height="482" alt="Menu utama Sistem Data Mahasiswa" src="https://github.com/user-attachments/assets/514551b4-dfd5-4b08-ba6c-ad33265c10d4" />
 
-### Dokumentasi Tambah Data Mahasiswa 1
-<img width="601" height="495" alt="Cuplikan layar 2026-09-22 230033" src="https://github.com/user-attachments/assets/703ca433-a3bd-46bc-a241-4aaa0bd8be63" />
+### Dokumentasi Tambah Data Mahasiswa (1)
 
+<img width="601" height="495" alt="Tambah data mahasiswa 1" src="https://github.com/user-attachments/assets/703ca433-a3bd-46bc-a241-4aaa0bd8be63" />
 
-### Dokumentasi Tambah Data Mahasiswa 2
-![Tambah 2](DataMahasiswa/images/Tambah2.png)
+### Dokumentasi Tambah Data Mahasiswa (2)
+
+![Tambah data mahasiswa 2](DataMahasiswa/images/Tambah2.png)
 
 ### Dokumentasi Tampilkan Data
-![Tampilkan Data](DataMahasiswa/images/Tampilkan.png)
 
-### Dokumentasi Cari Data (berhasil)
-<img width="293" height="272" alt="Cuplikan layar 2026-09-22 230335" src="https://github.com/user-attachments/assets/fdf86b3d-baa5-41c0-a116-f9fe67d77798" />
+![Tampilkan data mahasiswa](DataMahasiswa/images/Tampilkan.png)
 
+### Dokumentasi Cari Data (Berhasil)
 
-### Dokumentasi Cari Data (gagal)
-<img width="421" height="198" alt="Cuplikan layar 2026-09-22 230419" src="https://github.com/user-attachments/assets/c7cd9f8d-8456-4673-938d-4bea3cda80cb" />
+<img width="293" height="272" alt="Cari data mahasiswa berhasil" src="https://github.com/user-attachments/assets/fdf86b3d-baa5-41c0-a116-f9fe67d77798" />
 
+### Dokumentasi Cari Data (Gagal)
 
-### Dokumentasi Hapus Data (berhasil)
-<img width="327" height="197" alt="Cuplikan layar 2026-09-22 230441" src="https://github.com/user-attachments/assets/b831adf2-b81e-422d-9d27-e51fc2dcdca1" />
+<img width="421" height="198" alt="Cari data mahasiswa gagal" src="https://github.com/user-attachments/assets/c7cd9f8d-8456-4673-938d-4bea3cda80cb" />
 
+### Dokumentasi Hapus Data (Berhasil)
+
+<img width="327" height="197" alt="Hapus data mahasiswa berhasil" src="https://github.com/user-attachments/assets/b831adf2-b81e-422d-9d27-e51fc2dcdca1" />
 
 ### Dokumentasi Data Setelah Dihapus
-<img width="603" height="491" alt="Cuplikan layar 2026-09-22 230506" src="https://github.com/user-attachments/assets/89cc0b76-db27-4688-9eef-170c921be46e" />
 
+<img width="603" height="491" alt="Data mahasiswa setelah dihapus" src="https://github.com/user-attachments/assets/89cc0b76-db27-4688-9eef-170c921be46e" />
 
 ---
 
 ## 4. Sistem Data Mahasiswa (UI)
 
-Pada bagian ini, aplikasi Sistem Data Mahasiswa yang sebelumnya berbasis Console Application dikembangkan lebih lanjut dengan menambahkan antarmuka berbasis grafis (GUI) menggunakan Windows Forms (WinForms) di .NET framework.
+Pada bagian ini, aplikasi Sistem Data Mahasiswa yang sebelumnya berbasis *console application* dikembangkan lebih lanjut dengan menambahkan antarmuka grafis (GUI) menggunakan Windows Forms (WinForms) di .NET.
 
 ### Langkah Pengerjaan
 
-Jalankan code berikut satu-persatu pada terminal:
+Jalankan perintah berikut satu per satu pada terminal:
+
 ```powershell
 dotnet new winforms -n DataMahasiswaUI
 cd DataMahasiswaUI
 code .
 ```
 
-Kemudian buka file `Form1.Designer.cs` lalu isi dengan code berikut:
+Buka file `Form1.Designer.cs`, lalu isi dengan kode berikut:
+
 ```csharp
 namespace DataMahasiswaUI
 {
@@ -343,7 +361,8 @@ namespace DataMahasiswaUI
 }
 ```
 
-Kemudian buka file `Form1.cs` dan isi dengan code berikut:
+Kemudian buka file `Form1.cs`, lalu isi dengan kode berikut:
+
 ```csharp
 using System;
 using System.Collections.Generic;
@@ -400,7 +419,7 @@ namespace DataMahasiswaUI
                 daftarMahasiswa.Add(new Mahasiswa(nim, nama, prodi, ipk));
                 RefreshTabel();
                 MessageBox.Show("Data mahasiswa berhasil ditambahkan!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                
+
                 txtNIM.Clear();
                 txtNama.Clear();
                 txtProdi.Clear();
@@ -448,10 +467,12 @@ namespace DataMahasiswaUI
 }
 ```
 
-Lalu run dengan code berikut:
+Lalu jalankan dengan perintah berikut:
+
 ```powershell
 dotnet run
 ```
 
-### Tampilan Run
+### Dokumentasi Tampilan Run
+
 ![Tampilan UI](DataMahasiswaUI/images/TampilanUI.png)
