@@ -29,7 +29,7 @@ dotnet run
 ```
 
 ### Dokumentasi Hasil Run
-![Dokumentasi Hasil Run](HelloWorld.png)
+<img width="1097" height="281" alt="Cuplikan layar 2026-09-22 225033" src="https://github.com/user-attachments/assets/d628676e-5376-4fef-8f7e-6b48867ca15a" />
 
 ---
 
