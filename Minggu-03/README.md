@@ -439,12 +439,10 @@ namespace Kalkulator
 
 ### Tampilan Awal Kalkulator
 
-<!-- TODO: sisipkan screenshot tampilan awal, contoh:
-![Tampilan awal kalkulator](kalkulator/images/TampilanAwal.png)
--->
+<img width="347" height="576" alt="Cuplikan layar 2026-09-22 234228" src="https://github.com/user-attachments/assets/fb4095c2-92c5-4b15-903b-c64247a2b094" />
+
 
 ### Pengujian Operasi Hitung Berantai & Riwayat Ekspresi
 
-<!-- TODO: sisipkan screenshot pengujian operasi berantai, contoh:
-![Pengujian operasi hitung berantai](kalkulator/images/OperasiBerantai.png)
--->
+<img width="345" height="583" alt="Cuplikan layar 2026-09-22 234310" src="https://github.com/user-attachments/assets/2f3f5ec2-e306-432e-bb40-d1ad5faf633d" />
+
