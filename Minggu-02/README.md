@@ -1,14 +1,15 @@
-# 📚 Tugas PBKK - Minggu ke-2: Latihan 1 (Aplikasi Desktop)
+# Tugas Pemrograman Berbasis Kerangka Kerja (PBKK) W2
 
-> **Mata Kuliah:** Pemrograman Berbasis Kerangka Kerja
-> **Platform:** .NET 10 & C#
+**Identitas Mahasiswa:**
+* **Nama:** Achmad Najwa
+* **NIM:** 5025231265
+* **Departemen:** Teknik Informatika
 
 ---
 
 ## 1. Landasan Teori: Keunggulan Aplikasi Desktop
 
 Meskipun aplikasi berbasis web dan seluler berkembang pesat, aplikasi desktop tetap menjadi pilihan utama untuk berbagai skenario kerja tertentu karena keunggulan berikut:
-
 * **Efisiensi & Performa:** Eksekusi komputasi berat dan logika kompleks di sisi klien (*client-side*) berjalan jauh lebih cepat tanpa overhead latensi jaringan.
 * **Integrasi Sistem & Hardware Lokal:** Akses langsung ke komponen perangkat keras (port serial, file system lokal, printer, periferal) tanpa restriksi izin browser atau hambatan firewall jaringan.
 * **Manajemen Threading Efisien:** Pemanfaatan multithreading untuk tugas asinkron berjalan optimal langsung di atas manajemen thread sistem operasi lokal.
@@ -16,13 +17,12 @@ Meskipun aplikasi berbasis web dan seluler berkembang pesat, aplikasi desktop te
 
 ---
 
-## 2. Program 1: Sistem Data Mahasiswa (Console Application)
+## 2. HelloWorld!
 
-Program ini menerapkan konsep Object-Oriented Programming (OOP) untuk mengelola data mahasiswa (*NIM, Nama, Program Studi, IPK*) menggunakan koleksi dinamis `List<Mahasiswa>`.
+### Langkah Pengerjaan
 
-### Cara Menjalankan
-
-```bash
-cd DataMahasiswa
+Jalankan kode berikut secara berurutan pada terminal:
+```powershell
+dotnet new console -n HelloWorld
+cd HelloWorld
 dotnet run
-```
