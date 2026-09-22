@@ -1,43 +1,51 @@
-Tugas Pemrograman Berbasis Kerangka Kerja (PBKK) W2
-Identitas Mahasiswa:
+# Tugas Pemrograman Berbasis Kerangka Kerja (PBKK) W2
 
-Nama: Achmad Najwa
+**Identitas Mahasiswa:**
+* **Nama:** Achmad Najwa
+* **NIM:** 5025231265
+* **Departemen:** Teknik Informatika
 
-NIM: 5025231265
+---
 
-Departemen: Teknik Informatika
+## 1. Landasan Teori: Keunggulan Aplikasi Desktop
 
-1. Landasan Teori: Keunggulan Aplikasi Desktop
 Meskipun aplikasi berbasis web dan seluler berkembang pesat, aplikasi desktop tetap menjadi pilihan utama untuk berbagai skenario kerja tertentu karena keunggulan berikut:
+* **Efisiensi & Performa:** Eksekusi komputasi berat dan logika kompleks di sisi klien (*client-side*) berjalan jauh lebih cepat tanpa overhead latensi jaringan.
+* **Integrasi Sistem & Hardware Lokal:** Akses langsung ke komponen perangkat keras (port serial, file system lokal, printer, periferal) tanpa restriksi izin browser atau hambatan firewall jaringan.
+* **Manajemen Threading Efisien:** Pemanfaatan multithreading untuk tugas asinkron berjalan optimal langsung di atas manajemen thread sistem operasi lokal.
+* **Kemudahan Pengembangan & Debugging:** Antarmuka Windows Forms didukung alat pelacakan galat (*debugging*) yang matang dan stabil.
 
-Efisiensi & Performa: Eksekusi komputasi berat dan logika kompleks di sisi klien (client-side) berjalan jauh lebih cepat tanpa overhead latensi jaringan.
+---
 
-Integrasi Sistem & Hardware Lokal: Akses langsung ke komponen perangkat keras (port serial, file system lokal, printer, periferal) tanpa restriksi izin browser atau hambatan firewall jaringan.
+## 2. HelloWorld!
 
-Manajemen Threading Efisien: Pemanfaatan multithreading untuk tugas asinkron berjalan optimal langsung di atas manajemen thread sistem operasi lokal.
+### Langkah Pengerjaan
 
-Kemudahan Pengembangan & Debugging: Pengembangan antarmuka visual pada Windows Forms sangat intuitif melalui perancang formulir berbasis visual, didukung alat pelacakan galat (debugging) yang matang dan stabil.
-
-2. HelloWorld!
-Langkah Pengerjaan
 Jalankan code berikut secara berurutan pada terminal:
-
-PowerShell
+```powershell
 dotnet new console -n HelloWorld
 cd HelloWorld
 dotnet run
-Dokumentasi Hasil Run
-3. Sistem Data Mahasiswa (Console Application)
-Langkah Pengerjaan
-Jalankan code berikut secara berurutan pada terminal:
+```
 
-PowerShell
+### Dokumentasi Hasil Run
+![Dokumentasi Hasil Run](HelloWorld.png)
+
+---
+
+## 3. Sistem Data Mahasiswa (Console Application)
+
+### Langkah Pengerjaan
+
+Jalankan code berikut secara berurutan pada terminal:
+```powershell
 dotnet new console -n DataMahasiswa
 cd DataMahasiswa
 code .
-Buka File Program.cs dan isi dengan code berikut:
+```
 
-C#
+Buka File `Program.cs` dan isi dengan code berikut:
+```csharp
 using System;
 using System.Collections.Generic;
 
@@ -175,32 +183,57 @@ namespace DataMahasiswa
         }
     }
 }
-Save (ctrl + s) dan run dengan:
+```
 
-PowerShell
+Save (ctrl + s) dan run dengan:
+```powershell
 dotnet run
-Dokumentasi Hasil Run
-Dokumentasi Tambah Data Mahasiswa 1
-Dokumentasi Tambah Data Mahasiswa 2
-Dokumentasi Tampilkan Data
-Dokumentasi Cari Data (berhasil)
-Dokumentasi Cari Data (gagal)
-Dokumentasi Hapus Data (berhasil)
-Dokumentasi Data Setelah Dihapus
-Dokumentasi Keluar
-4. Sistem Data Mahasiswa (UI)
+```
+
+### Dokumentasi Hasil Run
+![Dokumentasi Hasil Run](DataMahasiswa/images/MenuUtama.png)
+
+### Dokumentasi Tambah Data Mahasiswa 1
+![Tambah 1](DataMahasiswa/images/Tambah.png)
+
+### Dokumentasi Tambah Data Mahasiswa 2
+![Tambah 2](DataMahasiswa/images/Tambah2.png)
+
+### Dokumentasi Tampilkan Data
+![Tampilkan Data](DataMahasiswa/images/Tampilkan.png)
+
+### Dokumentasi Cari Data (berhasil)
+![Cari Berhasil](DataMahasiswa/images/Cari.png)
+
+### Dokumentasi Cari Data (gagal)
+![Cari Gagal](DataMahasiswa/images/CariGagal.png)
+
+### Dokumentasi Hapus Data (berhasil)
+![Hapus Berhasil](DataMahasiswa/images/Hapus.png)
+
+### Dokumentasi Data Setelah Dihapus
+![Data Setelah Dihapus](DataMahasiswa/images/SetelahHapus.png)
+
+### Dokumentasi Keluar
+![Keluar](DataMahasiswa/images/Keluar.png)
+
+---
+
+## 4. Sistem Data Mahasiswa (UI)
+
 Pada bagian ini, aplikasi Sistem Data Mahasiswa yang sebelumnya berbasis Console Application dikembangkan lebih lanjut dengan menambahkan antarmuka berbasis grafis (GUI) menggunakan Windows Forms (WinForms) di .NET framework.
 
-Langkah Pengerjaan
-Jalankan code berikut satu-persatu pada terminal:
+### Langkah Pengerjaan
 
-PowerShell
+Jalankan code berikut satu-persatu pada terminal:
+```powershell
 dotnet new winforms -n DataMahasiswaUI
 cd DataMahasiswaUI
 code .
-Kemudian buka file Form1.Designer.cs lalu isi dengan code berikut:
+```
 
-C#
+Kemudian buka file `Form1.Designer.cs` lalu isi dengan code berikut:
+```csharp
 namespace DataMahasiswaUI
 {
     partial class Form1
@@ -305,9 +338,10 @@ namespace DataMahasiswaUI
         }
     }
 }
-Kemudian buka file Form1.cs dan isi dengan code berikut:
+```
 
-C#
+Kemudian buka file `Form1.cs` dan isi dengan code berikut:
+```csharp
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -409,8 +443,12 @@ namespace DataMahasiswaUI
         }
     }
 }
-Lalu run dengan code berikut:
+```
 
-PowerShell
+Lalu run dengan code berikut:
+```powershell
 dotnet run
-Tampilan Run
+```
+
+### Tampilan Run
+![Tampilan UI](DataMahasiswaUI/images/TampilanUI.png)
