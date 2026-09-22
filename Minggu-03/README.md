@@ -1,55 +1,49 @@
-Tugas Pemrograman Berbasis Kerangka Kerja (PBKK) — Minggu 3
+# Tugas Pemrograman Berbasis Kerangka Kerja (PBKK) — Minggu 3
 
-Identitas Mahasiswa:
+**Nama:** Achmad Najwa
+**NIM:** 5025231265
+**Departemen:** Teknik Informatika
 
-Nama: Achmad Najwa
+---
 
-NIM: 5025231265
+## Daftar Isi
 
-Departemen: Teknik Informatika
+1. [Landasan Teori: Antarmuka Grafis Desktop & Custom Rendering](#1-landasan-teori-antarmuka-grafis-desktop--custom-rendering)
+2. [Deskripsi Aplikasi Kalkulator (iOS Dark Theme)](#2-deskripsi-aplikasi-kalkulator-ios-dark-theme)
+3. [Langkah Pengerjaan & Setup](#3-langkah-pengerjaan--setup)
+4. [Implementasi Kode Program](#4-implementasi-kode-program)
+   - [4.1 Desain Antarmuka & HD Rendering (Form1.Designer.cs)](#41-desain-antarmuka--hd-rendering-form1designercs)
+   - [4.2 Logika Aritmetika & State Management (Form1.cs)](#42-logika-aritmetika--state-management-form1cs)
+   - [4.3 Titik Masuk Aplikasi (Program.cs)](#43-titik-masuk-aplikasi-programcs)
+5. [Dokumentasi Pengujian Aplikasi](#5-dokumentasi-pengujian-aplikasi)
 
-Daftar Isi
+---
 
-Landasan Teori: Antarmuka Grafis Desktop & Custom Rendering
-
-Deskripsi Aplikasi Kalkulator (iOS Dark Theme)
-
-Langkah Pengerjaan & Setup
-
-Implementasi Kode Program
-
-Desain Antarmuka & HD Rendering (Form1.Designer.cs)
-
-Logika Aritmetika & State Management (Form1.cs)
-
-Titik Masuk Aplikasi (Program.cs)
-
-Dokumentasi Pengujian Aplikasi
-
-1. Landasan Teori: Antarmuka Grafis Desktop & Custom Rendering
+## 1. Landasan Teori: Antarmuka Grafis Desktop & Custom Rendering
 
 Pengembangan antarmuka pada kerangka kerja .NET Windows Forms (WinForms) melibatkan manipulasi grafis tingkat lanjut untuk menghasilkan elemen visual modern:
 
-Vector-based Custom Rendering: Kontrol bawaan Windows Forms memiliki keterbatasan dalam merender bentuk geometris melengkung (rounded corners) dengan resolusi tinggi. Pemanfaatan antialiasing melalui modul System.Drawing.Drawing2D (SmoothingMode.AntiAlias dan PixelOffsetMode.HighQuality) memungkinkan kalkulasi kurva tombol digambar secara presisi tanpa artefak piksel bergerigi (jagged edges).
+- **Vector-based Custom Rendering** — Kontrol bawaan Windows Forms memiliki keterbatasan dalam merender bentuk geometris melengkung (*rounded corners*) dengan resolusi tinggi. Pemanfaatan antialiasing melalui modul `System.Drawing.Drawing2D` (`SmoothingMode.AntiAlias` dan `PixelOffsetMode.HighQuality`) memungkinkan kurva tombol digambar secara presisi tanpa artefak piksel bergerigi (*jagged edges*).
+- **Event-Driven Programming** — Pola komputasi kalkulator bekerja berbasis respons aksi tombol (*event handler*), di mana setiap ketukan angka, operator, maupun fungsi manipulasi tanda mengubah keadaan (*state*) variabel penampung secara dinamis.
+- **State Management & Chained Operations** — Kalkulator modern memerlukan pencatatan riwayat ekspresi secara berurutan (*chained calculation*), membedakan antara angka input baru, operator tunda (*pending operator*), serta eksekusi evaluasi hasil akhir.
 
-Event-Driven Programming: Pola komputasi kalkulator bekerja berbasis respon aksi tombol (event handler), di mana setiap ketukan angka, operator, maupun fungsi manipulasi tanda mengubah keadaan (state) variabel penampung secara dinamis.
+---
 
-State Management & Chained Operations: Kalkulator modern memerlukan pencatatan riwayat ekspresi secara berurutan (chained calculation), membedakan antara angka input baru, operator tunda (pending operator), serta eksekusi evaluasi hasil akhir.
-
-2. Deskripsi Aplikasi Kalkulator (iOS Dark Theme)
+## 2. Deskripsi Aplikasi Kalkulator (iOS Dark Theme)
 
 Aplikasi ini mengadopsi gaya visual iOS Dark Mode Calculator dengan spesifikasi teknis sebagai berikut:
 
-Estetika iOS Elegan: Latar belakang hitam pekat (#000000), tombol bulat sempurna dengan palet warna abu-abu gelap (#333333), tombol fungsi abu-abu terang (#A5A5A5), dan tombol aksi/operator oranye khas Apple (#FF9F0A).
+- **Estetika iOS Elegan** — Latar belakang hitam pekat (`#000000`), tombol bulat sempurna dengan palet warna abu-abu gelap (`#333333`), tombol fungsi abu-abu terang (`#A5A5A5`), dan tombol aksi/operator oranye khas Apple (`#FF9F0A`).
+- **Layar Ganda (Dual Display)** — Menampilkan baris riwayat ekspresi operasi di bagian atas serta angka utama berukuran besar dengan format pemisah ribuan (*thousand separator*).
+- **Operasi Aritmetika Lengkap** — Penjumlahan (+), Pengurangan (−), Perkalian (×), Pembagian (÷), Persentase (%), Negasi/Inversi tanda (±), dan tombol Reset Total (AC).
 
-Layar Ganda (Dual Display): Menampilkan baris riwayat ekspresi operasi di bagian atas serta angka utama berukuran besar dengan format pemisah ribuan (thousand separator).
+---
 
-Operasi Aritmetika Lengkap: Penjumlahan ($+$), Pengurangan ($-$), Perkalian ($\times$), Pembagian ($\div$), Persentase ($\%$) , Negasi/Inversi tanda ($\pm$), dan Tombol Reset Total (AC).
-
-3. Langkah Pengerjaan & Setup
+## 3. Langkah Pengerjaan & Setup
 
 Jalankan perintah berikut secara berurutan pada terminal PowerShell:
 
+```powershell
 # 1. Masuk ke direktori tugas Minggu-03
 cd "D:\Semester 7\Pemrograman-Berbasis-Kerangka-Kerja\Minggu-03"
 
@@ -59,14 +53,17 @@ cd kalkulator
 
 # 3. Buka editor VS Code
 code .
+```
 
+---
 
-4. Implementasi Kode Program
+## 4. Implementasi Kode Program
 
-Form1.Designer.cs
+### 4.1 Desain Antarmuka & HD Rendering (Form1.Designer.cs)
 
-Berkas ini mengelola tata letak kontrol, pembuatan tombol bulat HD dengan teknik lukis manual (custom paint), dan palet warna antarmuka:
+Berkas ini mengelola tata letak kontrol, pembuatan tombol bulat HD dengan teknik lukis manual (*custom paint*), dan palet warna antarmuka:
 
+```csharp
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -233,12 +230,13 @@ namespace Kalkulator
         }
     }
 }
+```
 
-
-Form1.cs
+### 4.2 Logika Aritmetika & State Management (Form1.cs)
 
 Berkas ini mengelola seluruh logika komputasi aritmetika, pembaruan riwayat perhitungan, dan pemformatan angka:
 
+```csharp
 using System;
 using System.Windows.Forms;
 
@@ -413,10 +411,11 @@ namespace Kalkulator
         }
     }
 }
+```
 
+### 4.3 Titik Masuk Aplikasi (Program.cs)
 
-Program.cs
-
+```csharp
 using System;
 using System.Windows.Forms;
 
@@ -432,10 +431,20 @@ namespace Kalkulator
         }
     }
 }
+```
 
+---
 
-5. Dokumentasi Pengujian Aplikasi
+## 5. Dokumentasi Pengujian Aplikasi
 
-Tampilan Awal Kalkulator
+### Tampilan Awal Kalkulator
 
-Pengujian Operasi Hitung Berantai & Riwayat Ekspresi
+<!-- TODO: sisipkan screenshot tampilan awal, contoh:
+![Tampilan awal kalkulator](kalkulator/images/TampilanAwal.png)
+-->
+
+### Pengujian Operasi Hitung Berantai & Riwayat Ekspresi
+
+<!-- TODO: sisipkan screenshot pengujian operasi berantai, contoh:
+![Pengujian operasi hitung berantai](kalkulator/images/OperasiBerantai.png)
+-->
