@@ -17,9 +17,31 @@
             attribution: '© OpenStreetMap contributors'
         }).addTo(map);
 
-        L.marker([-6.2088, 106.8456]).addTo(map)
-            .bindPopup('<b>Halte TransJakarta Bundaran HI</b><br>Ramp Bus TransKota Curam & Licin')
-            .openPopup();
+        var markerLayer = L.layerGroup().addTo(map);
+
+        // Mengubah teks agar aman ditampilkan di popup
+        function esc(text) {
+            var d = document.createElement('div');
+            d.textContent = text;
+            return d.innerHTML;
+        }
+
+        // Dipanggil dari C# (MapView.xaml.cs) dengan data laporan dari database
+        function setMarkers(items) {
+            markerLayer.clearLayers();
+            var bounds = [];
+            items.forEach(function (r) {
+                var m = L.marker([r.latitude, r.longitude]).addTo(markerLayer);
+                m.bindPopup('<b>' + esc(r.title) + '</b><br>' + esc(r.code) +
+                            '<br>' + esc(r.category) +
+                            '<br>Status: ' + esc(r.status) +
+                            ' &middot; Tingkat: ' + esc(r.severity));
+                bounds.push([r.latitude, r.longitude]);
+            });
+            if (bounds.length > 0) {
+                map.fitBounds(bounds, { padding: [40, 40], maxZoom: 16 });
+            }
+        }
     </script>
 </body>
 </html>

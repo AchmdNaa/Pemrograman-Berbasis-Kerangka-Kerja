@@ -5,17 +5,46 @@
     <ScrollViewer Padding="24">
         <StackPanel MaxWidth="720" HorizontalAlignment="Left">
             <TextBlock Text="Buat Laporan Hambatan Aksesibilitas" FontSize="22" FontWeight="Bold" Foreground="#0F172A"/>
-            
-            <TextBlock Text="Judul Ringkas Hambatan" Margin="0,16,0,4" FontWeight="SemiBold"/>
-            <TextBox Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" Padding="8" BorderBrush="#CBD5E1"/>
 
-            <TextBlock Text="Deskripsi Kondisi &amp; Dampak Mobilitas" Margin="0,12,0,4" FontWeight="SemiBold"/>
+            <TextBlock Text="Judul Ringkas Hambatan (5–100 karakter)" Margin="0,16,0,4" FontWeight="SemiBold"/>
+            <TextBox Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" MaxLength="100" Padding="8" BorderBrush="#CBD5E1"/>
+
+            <TextBlock Text="Kategori Hambatan" Margin="0,12,0,4" FontWeight="SemiBold"/>
+            <ComboBox ItemsSource="{Binding Categories}" SelectedItem="{Binding SelectedCategory}" DisplayMemberPath="Name" Padding="8"/>
+
+            <TextBlock Text="Tingkat Keparahan" Margin="0,12,0,4" FontWeight="SemiBold"/>
+            <ComboBox ItemsSource="{Binding SeverityOptions}" SelectedItem="{Binding Severity}" Padding="8"/>
+
+            <TextBlock Text="Deskripsi Kondisi &amp; Dampak Mobilitas (minimal 20 karakter)" Margin="0,12,0,4" FontWeight="SemiBold"/>
             <TextBox Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" Height="100" TextWrapping="Wrap" AcceptsReturn="True" Padding="8" BorderBrush="#CBD5E1"/>
 
             <TextBlock Text="Alamat / Patokan Lokasi" Margin="0,12,0,4" FontWeight="SemiBold"/>
             <TextBox Text="{Binding Address, UpdateSourceTrigger=PropertyChanged}" Padding="8" BorderBrush="#CBD5E1"/>
 
-            <Button Content="Kirim Laporan Hambatan" Command="{Binding SubmitReportCommand}" Margin="0,24,0,0" Padding="12" Background="#0F172A" Foreground="White" FontWeight="Bold"/>
+            <Grid Margin="0,12,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="12"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0">
+                    <TextBlock Text="Latitude" Margin="0,0,0,4" FontWeight="SemiBold"/>
+                    <TextBox Text="{Binding LatitudeText, UpdateSourceTrigger=PropertyChanged}" Padding="8" BorderBrush="#CBD5E1"/>
+                </StackPanel>
+                <StackPanel Grid.Column="2">
+                    <TextBlock Text="Longitude" Margin="0,0,0,4" FontWeight="SemiBold"/>
+                    <TextBox Text="{Binding LongitudeText, UpdateSourceTrigger=PropertyChanged}" Padding="8" BorderBrush="#CBD5E1"/>
+                </StackPanel>
+            </Grid>
+
+            <TextBlock Text="Nama Pelapor (opsional)" Margin="0,12,0,4" FontWeight="SemiBold"/>
+            <TextBox Text="{Binding ReporterName, UpdateSourceTrigger=PropertyChanged}" Padding="8" BorderBrush="#CBD5E1"/>
+            <CheckBox Content="Kirim sebagai anonim" IsChecked="{Binding IsAnonymous}" Margin="0,8,0,0"/>
+
+            <TextBlock Text="{Binding ErrorMessage}" Foreground="#DC2626" TextWrapping="Wrap" Margin="0,16,0,0"/>
+            <TextBlock Text="{Binding SuccessMessage}" Foreground="#16A34A" TextWrapping="Wrap" Margin="0,4,0,0"/>
+
+            <Button Content="Kirim Laporan Hambatan" Command="{Binding SubmitReportCommand}" Margin="0,16,0,0" Padding="12" Background="#0F172A" Foreground="White" FontWeight="Bold"/>
         </StackPanel>
     </ScrollViewer>
 </UserControl>

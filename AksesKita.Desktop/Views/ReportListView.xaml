@@ -5,7 +5,9 @@
     <Grid Margin="24">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Margin="0,0,0,16">
@@ -13,6 +15,28 @@
             <TextBlock Text="Pusat kendali verifikasi, eskalasi, dan audit perbaikan hambatan mobilitas." Foreground="#64748B" Margin="0,4,0,0"/>
         </StackPanel>
 
-        <DataGrid Grid.Row="1" ItemsSource="{Binding Reports}" AutoGenerateColumns="True" Background="White" BorderBrush="#E2E8F0" BorderThickness="1"/>
+        <!-- Pencarian, filter status, dan aksi -->
+        <DockPanel Grid.Row="1" Margin="0,0,0,12" LastChildFill="True">
+            <Button DockPanel.Dock="Right" Content="Hapus" Command="{Binding DeleteSelectedCommand}" Padding="14,6" Margin="8,0,0,0"/>
+            <Button DockPanel.Dock="Right" Content="Lihat Detail" Command="{Binding OpenDetailCommand}" Padding="14,6" Margin="8,0,0,0"/>
+            <ComboBox DockPanel.Dock="Right" ItemsSource="{Binding StatusOptions}" SelectedItem="{Binding SelectedStatusFilter}" Width="160" Margin="8,0,0,0" VerticalContentAlignment="Center"/>
+            <TextBox Text="{Binding SearchKeyword, UpdateSourceTrigger=PropertyChanged}" Padding="8" BorderBrush="#CBD5E1"
+                     ToolTip="Cari berdasarkan kode, judul, atau alamat"/>
+        </DockPanel>
+
+        <DataGrid Grid.Row="2" ItemsSource="{Binding Reports}" SelectedItem="{Binding SelectedReport}"
+                  AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single"
+                  Background="White" BorderBrush="#E2E8F0" BorderThickness="1">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Kode" Binding="{Binding TicketCode}" Width="160"/>
+                <DataGridTextColumn Header="Judul" Binding="{Binding Title}" Width="*"/>
+                <DataGridTextColumn Header="Kategori" Binding="{Binding Category.Name}" Width="200"/>
+                <DataGridTextColumn Header="Tingkat" Binding="{Binding Severity}" Width="90"/>
+                <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="130"/>
+                <DataGridTextColumn Header="Dibuat" Binding="{Binding CreatedAt, StringFormat=dd MMM yyyy HH:mm}" Width="140"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <TextBlock Grid.Row="3" Text="{Binding Message}" Foreground="#64748B" Margin="0,8,0,0"/>
     </Grid>
 </UserControl>
