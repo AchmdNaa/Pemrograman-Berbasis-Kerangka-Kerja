@@ -1,0 +1,57 @@
+<Window x:Class="AksesKita.Desktop.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:views="clr-namespace:AksesKita.Desktop.Views"
+        xmlns:vm="clr-namespace:AksesKita.Desktop.ViewModels"
+        Title="AksesKita — Ruang Inklusif" Height="900" Width="1440"
+        WindowStartupLocation="CenterScreen" Background="#F8FAFC">
+
+    <Window.DataContext>
+        <vm:MainViewModel/>
+    </Window.DataContext>
+
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type vm:DashboardViewModel}">
+            <views:DashboardView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:ReportListViewModel}">
+            <views:ReportListView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:CreateReportViewModel}">
+            <views:CreateReportView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:ReportDetailViewModel}">
+            <views:ReportDetailView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:MapViewModel}">
+            <views:MapView/>
+        </DataTemplate>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="260"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Sidebar Navigation -->
+        <Border Grid.Column="0" Background="#EDF2F7" BorderBrush="#E2E8F0" BorderThickness="0,0,1,0">
+            <DockPanel Margin="16">
+                <StackPanel DockPanel.Dock="Top" Margin="8,16,0,24">
+                    <TextBlock Text="AksesKita" FontWeight="Bold" FontSize="20" Foreground="#0F172A"/>
+                    <TextBlock Text="Ruang Inklusif" FontSize="12" Foreground="#64748B"/>
+                </StackPanel>
+
+                <StackPanel DockPanel.Dock="Top">
+                    <Button Content="Dashboard &amp; Analitik" Command="{Binding NavigateCommand}" CommandParameter="Dashboard" Margin="0,0,0,8" Padding="10" HorizontalContentAlignment="Left" Background="Transparent" BorderThickness="0"/>
+                    <Button Content="Peta Interaktif" Command="{Binding NavigateCommand}" CommandParameter="Map" Margin="0,0,0,8" Padding="10" HorizontalContentAlignment="Left" Background="Transparent" BorderThickness="0"/>
+                    <Button Content="Daftar &amp; Manajemen Laporan" Command="{Binding NavigateCommand}" CommandParameter="ReportList" Margin="0,0,0,8" Padding="10" HorizontalContentAlignment="Left" Background="Transparent" BorderThickness="0"/>
+                    <Button Content="Formulir Laporan Baru" Command="{Binding NavigateCommand}" CommandParameter="CreateReport" Margin="0,0,0,8" Padding="10" HorizontalContentAlignment="Left" Background="Transparent" BorderThickness="0"/>
+                </StackPanel>
+            </DockPanel>
+        </Border>
+
+        <!-- Main View Container -->
+        <ContentControl Grid.Column="1" Content="{Binding CurrentView}"/>
+    </Grid>
+</Window>

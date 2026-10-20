@@ -1,0 +1,18 @@
+<UserControl x:Class="AksesKita.Desktop.Views.ReportListView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="#F8FAFC">
+    <Grid Margin="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Margin="0,0,0,16">
+            <TextBlock Text="Daftar &amp; Manajemen Laporan" FontSize="22" FontWeight="Bold" Foreground="#0F172A"/>
+            <TextBlock Text="Pusat kendali verifikasi, eskalasi, dan audit perbaikan hambatan mobilitas." Foreground="#64748B" Margin="0,4,0,0"/>
+        </StackPanel>
+
+        <DataGrid Grid.Row="1" ItemsSource="{Binding Reports}" AutoGenerateColumns="True" Background="White" BorderBrush="#E2E8F0" BorderThickness="1"/>
+    </Grid>
+</UserControl>
