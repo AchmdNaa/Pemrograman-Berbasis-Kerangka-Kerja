@@ -1,0 +1,195 @@
+<UserControl x:Class="AksesKita.Desktop.Views.MapView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:AksesKita.Desktop"
+             xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
+             Background="{DynamicResource PageBg}">
+    <UserControl.Resources>
+        <!-- Kartu penghitung status (Kritis / Proses / Selesai); klik untuk memfilter -->
+        <Style x:Key="StatusTile" TargetType="RadioButton">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="GroupName" Value="sg"/>
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusRing}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Border x:Name="b" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="1" CornerRadius="12" Padding="12,10">
+                            <ContentPresenter/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="b" Property="BorderThickness" Value="2"/>
+                                <Setter TargetName="b" Property="BorderBrush" Value="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Margin="16">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="400"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- ===== Filter panel ===== -->
+        <Border Grid.Column="0" Style="{StaticResource Card}" Margin="0,0,14,0" Padding="0">
+            <DockPanel>
+                <!-- Header -->
+                <Border DockPanel.Dock="Top" BorderBrush="{DynamicResource Line}" BorderThickness="0,0,0,1" Padding="20,16">
+                    <Grid>
+                        <TextBlock Text="Filter Peta GIS" Style="{StaticResource CardTitle}" FontSize="18" VerticalAlignment="Center"/>
+                        <Border Style="{StaticResource Pill}" HorizontalAlignment="Right" Background="{DynamicResource InfoTint2}" BorderBrush="{DynamicResource InfoBorder}">
+                            <TextBlock FontSize="12" FontWeight="Bold" Foreground="{DynamicResource InfoText}">
+                                <Run Text="{Binding ActiveCount, Mode=OneWay}"/><Run Text=" Hambatan Aktif"/>
+                            </TextBlock>
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <!-- Tombol tetap di bawah -->
+                <Border DockPanel.Dock="Bottom" BorderBrush="{DynamicResource Line}" BorderThickness="0,1,0,0" Padding="14">
+                    <Button Style="{StaticResource PrimaryButton}" Content="Laporkan Hambatan" local:Ui.Icon="{StaticResource IcoPlus}"
+                            Command="{Binding NewReportCommand}" MinHeight="46"/>
+                </Border>
+
+                <DockPanel Margin="20,16,20,0">
+                    <StackPanel DockPanel.Dock="Top">
+                        <TextBox Style="{StaticResource FormInput}" local:Ui.Icon="{StaticResource IcoSearch}"
+                                 local:Ui.Placeholder="Cari lokasi, judul, atau ID tiket..."
+                                 AutomationProperties.Name="Cari lokasi, judul, atau ID tiket"
+                                 Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"/>
+
+                        <TextBlock Text="KATEGORI HAMBATAN" Style="{StaticResource EyebrowText}" Margin="0,18,0,10"/>
+                        <ListBox ItemsSource="{Binding CategoryChips}" SelectedItem="{Binding SelectedCategory}"
+                                 BorderThickness="0" Background="Transparent" AutomationProperties.Name="Kategori hambatan"
+                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                            <ListBox.ItemsPanel>
+                                <ItemsPanelTemplate><WrapPanel/></ItemsPanelTemplate>
+                            </ListBox.ItemsPanel>
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="ListBoxItem">
+                                    <Setter Property="Margin" Value="0,0,7,7"/>
+                                    <Setter Property="Cursor" Value="Hand"/>
+                                    <Setter Property="FocusVisualStyle" Value="{StaticResource FocusRing}"/>
+                                    <Setter Property="AutomationProperties.Name" Value="{Binding}"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="ListBoxItem">
+                                                <Border x:Name="pill" Background="{DynamicResource Hover}" CornerRadius="15" Padding="13,6">
+                                                    <TextBlock x:Name="t" Text="{Binding}" FontSize="12.5" FontWeight="Medium" Foreground="{DynamicResource Body}"/>
+                                                </Border>
+                                                <ControlTemplate.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter TargetName="pill" Property="Background" Value="{DynamicResource Line}"/>
+                                                    </Trigger>
+                                                    <Trigger Property="IsSelected" Value="True">
+                                                        <Setter TargetName="pill" Property="Background" Value="{DynamicResource Navy}"/>
+                                                        <Setter TargetName="t" Property="Foreground" Value="White"/>
+                                                        <Setter TargetName="t" Property="FontWeight" Value="SemiBold"/>
+                                                    </Trigger>
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+                        </ListBox>
+
+                        <TextBlock Text="STATUS PENANGANAN" Style="{StaticResource EyebrowText}" Margin="0,12,0,10"/>
+                        <UniformGrid Columns="3">
+                            <RadioButton Style="{StaticResource StatusTile}" Margin="0,0,5,0" Command="{Binding SetStatusGroupCommand}" CommandParameter="Kritis"
+                                         Background="{DynamicResource DangerTint}" BorderBrush="{DynamicResource DangerBorder}" Foreground="{DynamicResource DangerText}"
+                                         AutomationProperties.Name="Filter status kritis"
+                                         IsChecked="{Binding StatusGroup, Converter={StaticResource PageToBool}, ConverterParameter=Kritis, Mode=OneWay}">
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Ellipse Width="8" Height="8" Fill="{DynamicResource Danger}" VerticalAlignment="Center" Margin="0,0,6,0"/>
+                                        <TextBlock Text="Kritis" FontSize="12.5" FontWeight="Bold" Foreground="{DynamicResource DangerText}"/>
+                                    </StackPanel>
+                                    <TextBlock Text="{Binding KritisCount}" FontSize="22" FontWeight="ExtraBold" Foreground="{DynamicResource DangerText}" Margin="0,4,0,0"/>
+                                </StackPanel>
+                            </RadioButton>
+                            <RadioButton Style="{StaticResource StatusTile}" Margin="2.5,0" Command="{Binding SetStatusGroupCommand}" CommandParameter="Proses"
+                                         Background="{DynamicResource WarnTint}" BorderBrush="{DynamicResource WarnBorder}" Foreground="{DynamicResource WarnText}"
+                                         AutomationProperties.Name="Filter status proses"
+                                         IsChecked="{Binding StatusGroup, Converter={StaticResource PageToBool}, ConverterParameter=Proses, Mode=OneWay}">
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Ellipse Width="8" Height="8" Fill="{DynamicResource Warn}" VerticalAlignment="Center" Margin="0,0,6,0"/>
+                                        <TextBlock Text="Proses" FontSize="12.5" FontWeight="Bold" Foreground="{DynamicResource WarnText}"/>
+                                    </StackPanel>
+                                    <TextBlock Text="{Binding ProsesCount}" FontSize="22" FontWeight="ExtraBold" Foreground="{DynamicResource WarnText}" Margin="0,4,0,0"/>
+                                </StackPanel>
+                            </RadioButton>
+                            <RadioButton Style="{StaticResource StatusTile}" Margin="5,0,0,0" Command="{Binding SetStatusGroupCommand}" CommandParameter="Selesai"
+                                         Background="{DynamicResource OkTint}" BorderBrush="{DynamicResource OkBorder}" Foreground="{DynamicResource OkText}"
+                                         AutomationProperties.Name="Filter status selesai"
+                                         IsChecked="{Binding StatusGroup, Converter={StaticResource PageToBool}, ConverterParameter=Selesai, Mode=OneWay}">
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Ellipse Width="8" Height="8" Fill="{DynamicResource Ok}" VerticalAlignment="Center" Margin="0,0,6,0"/>
+                                        <TextBlock Text="Selesai" FontSize="12.5" FontWeight="Bold" Foreground="{DynamicResource OkText}"/>
+                                    </StackPanel>
+                                    <TextBlock Text="{Binding SelesaiCount}" FontSize="22" FontWeight="ExtraBold" Foreground="{DynamicResource OkText}" Margin="0,4,0,0"/>
+                                </StackPanel>
+                            </RadioButton>
+                        </UniformGrid>
+
+                        <TextBlock Text="LAPORAN TERDEKAT — URUT PALING MENDESAK" Style="{StaticResource EyebrowText}" Margin="0,20,0,10"/>
+                    </StackPanel>
+
+                    <ListBox ItemsSource="{Binding Nearby}" SelectedItem="{Binding SelectedReport}" BorderThickness="0"
+                             Background="Transparent" ItemContainerStyle="{StaticResource ListRow}" Margin="0,0,-8,0" Padding="0,0,8,0"
+                             AutomationProperties.Name="Laporan terdekat"
+                             ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <Grid>
+                                        <TextBlock Text="{Binding TicketCode}" FontSize="12.5" FontWeight="Bold" Foreground="{DynamicResource Ink}" VerticalAlignment="Center"/>
+                                        <Border Style="{StaticResource Tag}" HorizontalAlignment="Right" Padding="8,2"
+                                                Background="{Binding Status, Converter={StaticResource StatusToTint}}">
+                                            <TextBlock Text="{Binding Status, Converter={StaticResource EnumLabel}}" FontSize="11" FontWeight="Bold"
+                                                       Foreground="{Binding Status, Converter={StaticResource StatusToBrush}}"/>
+                                        </Border>
+                                    </Grid>
+                                    <TextBlock Text="{Binding Title}" FontSize="13.5" FontWeight="Bold" Foreground="{DynamicResource Ink}" TextWrapping="Wrap" Margin="0,6,0,3"/>
+                                    <TextBlock Text="{Binding Address}" FontSize="12" Foreground="{DynamicResource Muted}" TextWrapping="Wrap"/>
+                                    <StackPanel Orientation="Horizontal" Margin="0,7,0,0">
+                                        <Path Style="{StaticResource IconXs}" Data="{StaticResource IcoThumb}" Stroke="{DynamicResource Muted}" Margin="0,0,6,0"/>
+                                        <TextBlock FontSize="12" Foreground="{DynamicResource Body2}" VerticalAlignment="Center">
+                                            <Run Text="{Binding SupportCount, Mode=OneWay}"/><Run Text=" Dukungan"/>
+                                        </TextBlock>
+                                    </StackPanel>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </DockPanel>
+            </DockPanel>
+        </Border>
+
+        <!-- ===== Map ===== -->
+        <Border Grid.Column="1" Style="{StaticResource Card}" Padding="0" ClipToBounds="True">
+            <Grid>
+                <wv2:WebView2 x:Name="mapWebView"/>
+
+                <!-- Fallback shown when the WebView2 runtime is missing -->
+                <Border x:Name="mapFallback" Background="{DynamicResource Surface2}" Visibility="Collapsed">
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" MaxWidth="440">
+                        <Border Width="64" Height="64" CornerRadius="32" Background="{DynamicResource Hover}" HorizontalAlignment="Center">
+                            <Path Style="{StaticResource IconLg}" Data="{StaticResource IcoMap}" Stroke="{DynamicResource Body2}" HorizontalAlignment="Center"/>
+                        </Border>
+                        <TextBlock x:Name="mapFallbackText" TextAlignment="Center" TextWrapping="Wrap"
+                                   Foreground="{DynamicResource Body2}" FontSize="13" Margin="0,12,0,0"
+                                   Text="Peta membutuhkan WebView2 Runtime (Microsoft Edge). Pasang 'Evergreen WebView2 Runtime' lalu buka kembali menu ini."/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

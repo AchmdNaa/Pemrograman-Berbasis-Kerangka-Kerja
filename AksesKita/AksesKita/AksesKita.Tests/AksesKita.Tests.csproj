@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <IsPackable>false</IsPackable>
+    <!-- Boleh jalan di komputer yang hanya punya .NET 9 atau 10 -->
+    <RollForward>LatestMajor</RollForward>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.*" />
+    <PackageReference Include="xunit" Version="2.*" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.*" />
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Xunit" />
+  </ItemGroup>
+
+  <!-- Hanya kode aturan (tanpa WPF) yang ditautkan, jadi tes bisa jalan tanpa membuka aplikasi -->
+  <ItemGroup>
+    <Compile Include="..\AksesKita.Desktop\Rules\*.cs" Link="Rules\%(Filename)%(Extension)" />
+    <Compile Include="..\AksesKita.Desktop\Models\Enums.cs" Link="Models\Enums.cs" />
+    <Compile Include="..\AksesKita.Desktop\Security\PasswordHasher.cs" Link="Security\PasswordHasher.cs" />
+  </ItemGroup>
+
+</Project>

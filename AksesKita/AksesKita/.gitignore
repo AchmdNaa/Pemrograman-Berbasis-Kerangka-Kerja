@@ -1,0 +1,25 @@
+## .NET / Visual Studio
+bin/
+obj/
+.vs/
+*.user
+*.suo
+TestResults/
+*.log
+
+## Data lokal aplikasi
+*.db
+*.db-shm
+*.db-wal
+Photos/
+
+## Editor
+.vscode/*
+!.vscode/tasks.json
+!.vscode/launch.json
+.idea/
+
+## Data lokal aplikasi (versi ini)
+Uploads/
+theme.txt
+crash.log

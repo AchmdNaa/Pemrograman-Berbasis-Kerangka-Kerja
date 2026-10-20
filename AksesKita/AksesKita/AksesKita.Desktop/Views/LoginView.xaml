@@ -1,0 +1,323 @@
+<UserControl x:Class="AksesKita.Desktop.Views.LoginView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:AksesKita.Desktop">
+    <UserControl.Resources>
+        <!-- Tab "Masuk" / "Daftar Akun Baru" -->
+        <Style x:Key="AuthTab" TargetType="RadioButton">
+            <Setter Property="Foreground" Value="{DynamicResource Body2}"/>
+            <Setter Property="FontSize" Value="13.5"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusRing}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Border x:Name="tab" Background="Transparent" BorderBrush="Transparent" BorderThickness="1"
+                                CornerRadius="12" Padding="12,10">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Path x:Name="ico" Style="{StaticResource IconSm}" Stroke="{DynamicResource Muted}" Margin="0,0,8,0"
+                                      Data="{Binding (local:Ui.Icon), RelativeSource={RelativeSource TemplatedParent}}"/>
+                                <ContentPresenter VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="{DynamicResource Ink}"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="tab" Property="Background" Value="{DynamicResource Surface}"/>
+                                <Setter TargetName="tab" Property="BorderBrush" Value="{DynamicResource Line}"/>
+                                <Setter TargetName="ico" Property="Stroke" Value="{DynamicResource Teal}"/>
+                                <Setter Property="Foreground" Value="{DynamicResource Ink}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Tombol mata di kanan kolom kata sandi (tampilkan / sembunyikan) -->
+        <Style x:Key="EyeToggle" TargetType="ToggleButton">
+            <Setter Property="Width" Value="40"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="Foreground" Value="{DynamicResource Muted}"/>
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusRing}"/>
+            <Setter Property="ToolTip" Value="Tampilkan atau sembunyikan kata sandi"/>
+            <Setter Property="AutomationProperties.Name" Value="Tampilkan atau sembunyikan kata sandi"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Border Background="Transparent">
+                            <Path x:Name="eye" Style="{StaticResource IconSm}" Data="{StaticResource IcoEye}" HorizontalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="{DynamicResource Ink}"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="eye" Property="Data" Value="{StaticResource IcoEyeOff}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Tombol isi-otomatis akun demo -->
+        <Style x:Key="DemoPill" TargetType="Button">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Margin" Value="4"/>
+            <Setter Property="Foreground" Value="{DynamicResource Body}"/>
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusRing}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="b" Background="{DynamicResource Surface}" BorderBrush="{DynamicResource Line}" BorderThickness="1"
+                                CornerRadius="10" Padding="11,7">
+                            <ContentPresenter/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="b" Property="BorderBrush" Value="{DynamicResource Teal}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid>
+        <!-- Latar gelap bergradasi seperti desain Stitch (sama untuk tema terang dan gelap) -->
+        <Grid.Background>
+            <RadialGradientBrush Center="0.5,0.2" GradientOrigin="0.5,0.2" RadiusX="0.9" RadiusY="0.9">
+                <GradientStop Color="#15324F" Offset="0"/>
+                <GradientStop Color="#0C1A29" Offset="0.7"/>
+                <GradientStop Color="#07101A" Offset="1"/>
+            </RadialGradientBrush>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Cahaya dekoratif -->
+        <Ellipse Grid.RowSpan="3" Width="760" Height="520" VerticalAlignment="Top" Margin="0,-180,0,0" IsHitTestVisible="False">
+            <Ellipse.Fill>
+                <RadialGradientBrush>
+                    <GradientStop Color="#2A0EA5E9" Offset="0"/>
+                    <GradientStop Color="#000EA5E9" Offset="1"/>
+                </RadialGradientBrush>
+            </Ellipse.Fill>
+        </Ellipse>
+
+        <!-- Top bar -->
+        <Border Grid.Row="0" BorderBrush="#14FFFFFF" BorderThickness="0,0,0,1" Padding="40,16">
+            <Grid>
+                <StackPanel Orientation="Horizontal">
+                    <Border Width="36" Height="36" CornerRadius="9" Background="#330EA5E9" BorderBrush="#4D38BDF8" BorderThickness="1">
+                        <TextBlock Text="SBY" FontSize="12" FontWeight="Bold" Foreground="#7DD3FC"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <StackPanel Margin="12,0,0,0" VerticalAlignment="Center">
+                        <TextBlock Text="PEMERINTAH KOTA SURABAYA" FontSize="12.5" FontWeight="Bold" Foreground="#E2E8F0"/>
+                        <TextBlock Text="Dinas Sosial &amp; Fasilitas Publik Inklusif" FontSize="11.5" Foreground="#A3B2C7"/>
+                    </StackPanel>
+                </StackPanel>
+                <Border HorizontalAlignment="Right" VerticalAlignment="Center" Background="#1AFFFFFF" BorderBrush="#26FFFFFF" BorderThickness="1"
+                        CornerRadius="16" Padding="12,6" ToolTip="Standar Aksesibilitas Terpenuhi">
+                    <StackPanel Orientation="Horizontal">
+                        <Path Style="{StaticResource IconSm}" Data="{StaticResource IcoCheckCircle}" Stroke="#34D399" Margin="0,0,7,0"/>
+                        <TextBlock Text="Standar Ramah Disabilitas" FontSize="12" FontWeight="Medium" Foreground="#E2E8F0" VerticalAlignment="Center"/>
+                        <Border Background="#33FFFFFF" CornerRadius="5" Padding="6,2" Margin="9,0,0,0">
+                            <TextBlock Text="WCAG 2.1 AA" FontSize="10.5" FontWeight="Bold" Foreground="White"/>
+                        </Border>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </Border>
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel VerticalAlignment="Center" Margin="16,28">
+                <!-- Kartu login & pendaftaran -->
+                <Border Width="540" Background="{DynamicResource Surface}" CornerRadius="24" BorderBrush="{DynamicResource Line}" BorderThickness="1">
+                    <StackPanel>
+                        <!-- Brand header -->
+                        <Border Background="{DynamicResource Surface2}" BorderBrush="{DynamicResource Line}" BorderThickness="0,0,0,1"
+                                CornerRadius="24,24,0,0" Padding="32,30,32,22">
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Border Width="54" Height="54" CornerRadius="16">
+                                        <Border.Background>
+                                            <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                                                <GradientStop Color="#0891B2" Offset="0"/>
+                                                <GradientStop Color="#0369A1" Offset="1"/>
+                                            </LinearGradientBrush>
+                                        </Border.Background>
+                                        <Path Data="{StaticResource IcoAccessFill}" Fill="White" Width="24" Height="24" Stretch="None"
+                                              HorizontalAlignment="Center" VerticalAlignment="Center">
+                                            <Path.LayoutTransform><ScaleTransform ScaleX="1.25" ScaleY="1.25"/></Path.LayoutTransform>
+                                        </Path>
+                                    </Border>
+                                    <StackPanel Margin="14,0,0,0" VerticalAlignment="Center">
+                                        <TextBlock Text="AksesKita" FontWeight="Bold" FontSize="26" Foreground="{DynamicResource Ink}"/>
+                                        <TextBlock Text="RUANG INKLUSIF" FontSize="12" FontWeight="SemiBold" Foreground="{DynamicResource Body2}"/>
+                                    </StackPanel>
+                                </StackPanel>
+                                <TextBlock Text="{Binding Heading}" FontSize="14.5" FontWeight="Medium" Foreground="{DynamicResource Body}"
+                                           HorizontalAlignment="Center" Margin="0,16,0,0"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Tab switcher -->
+                        <Border Background="{DynamicResource Hover}" BorderBrush="{DynamicResource Line}" BorderThickness="1"
+                                CornerRadius="16" Padding="6" Margin="40,22,40,0">
+                            <UniformGrid Columns="2">
+                                <RadioButton Style="{StaticResource AuthTab}" Content="Masuk" local:Ui.Icon="{StaticResource IcoLogin}" GroupName="auth"
+                                             Command="{Binding SetModeCommand}" CommandParameter="login"
+                                             IsChecked="{Binding IsLogin, Mode=OneWay}" Margin="0,0,3,0"/>
+                                <RadioButton Style="{StaticResource AuthTab}" Content="Daftar Akun Baru" local:Ui.Icon="{StaticResource IcoUserAdd}" GroupName="auth"
+                                             Command="{Binding SetModeCommand}" CommandParameter="register"
+                                             IsChecked="{Binding IsRegister, Mode=OneWay}" Margin="3,0,0,0"/>
+                            </UniformGrid>
+                        </Border>
+
+                        <StackPanel Margin="40,22,40,28">
+                            <!-- Nama hanya muncul saat mendaftar -->
+                            <StackPanel Visibility="{Binding IsRegister, Converter={StaticResource BoolToVis}}" Margin="0,0,0,14">
+                                <TextBlock Style="{StaticResource FieldLabel}">
+                                    <Run Text="Nama lengkap"/><Run Text=" *" Foreground="{DynamicResource Danger}"/>
+                                </TextBlock>
+                                <TextBox Style="{StaticResource FormInput}" MaxLength="60"
+                                         local:Ui.Icon="{StaticResource IcoUser}" local:Ui.Placeholder="Sesuai KTP / Identitas Resmi"
+                                         Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
+                                         AutomationProperties.Name="Nama lengkap"/>
+                            </StackPanel>
+
+                            <TextBlock Style="{StaticResource FieldLabel}">
+                                <Run Text="Alamat Email"/><Run Text=" *" Foreground="{DynamicResource Danger}"/>
+                            </TextBlock>
+                            <TextBox x:Name="EmailBox" Style="{StaticResource FormInput}" MaxLength="120"
+                                     local:Ui.Icon="{StaticResource IcoMail}" local:Ui.Placeholder="nama@email.com"
+                                     Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"
+                                     AutomationProperties.Name="Alamat email"/>
+
+                            <TextBlock Style="{StaticResource FieldLabel}" Margin="0,14,0,6">
+                                <Run Text="Kata Sandi"/><Run Text=" *" Foreground="{DynamicResource Danger}"/>
+                            </TextBlock>
+                            <Grid>
+                                <PasswordBox x:Name="PasswordBox" Style="{StaticResource PasswordInput}" MaxLength="72" Padding="12,10,44,10"
+                                             local:Ui.Icon="{StaticResource IcoLock}"
+                                             PasswordChanged="OnPasswordChanged" AutomationProperties.Name="Kata sandi"/>
+                                <TextBox x:Name="PasswordPlain" Style="{StaticResource FormInput}" MaxLength="72" Padding="12,10,44,10"
+                                         local:Ui.Icon="{StaticResource IcoLock}" Visibility="Collapsed"
+                                         TextChanged="OnPasswordPlainChanged" AutomationProperties.Name="Kata sandi (terlihat)"/>
+                                <ToggleButton x:Name="PasswordEye" Style="{StaticResource EyeToggle}"
+                                              Checked="OnPasswordEyeToggled" Unchecked="OnPasswordEyeToggled"/>
+                            </Grid>
+
+                            <StackPanel Visibility="{Binding IsRegister, Converter={StaticResource BoolToVis}}">
+                                <TextBlock Style="{StaticResource FieldLabel}" Margin="0,14,0,6">
+                                    <Run Text="Ulangi kata sandi"/><Run Text=" *" Foreground="{DynamicResource Danger}"/>
+                                </TextBlock>
+                                <Grid>
+                                    <PasswordBox x:Name="ConfirmBox" Style="{StaticResource PasswordInput}" MaxLength="72" Padding="12,10,44,10"
+                                                 local:Ui.Icon="{StaticResource IcoShield}"
+                                                 PasswordChanged="OnConfirmChanged" AutomationProperties.Name="Ulangi kata sandi"/>
+                                    <TextBox x:Name="ConfirmPlain" Style="{StaticResource FormInput}" MaxLength="72" Padding="12,10,44,10"
+                                             local:Ui.Icon="{StaticResource IcoShield}" Visibility="Collapsed"
+                                             TextChanged="OnConfirmPlainChanged" AutomationProperties.Name="Ulangi kata sandi (terlihat)"/>
+                                    <ToggleButton x:Name="ConfirmEye" Style="{StaticResource EyeToggle}"
+                                                  Checked="OnConfirmEyeToggled" Unchecked="OnConfirmEyeToggled"/>
+                                </Grid>
+                                <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                                    <Path Style="{StaticResource IconXs}" Data="{StaticResource IcoInfo}" Stroke="{DynamicResource InfoText}" Margin="0,0,6,0"/>
+                                    <TextBlock Text="Minimal 8 karakter, mengandung huruf dan angka."
+                                               FontSize="12" Foreground="{DynamicResource Muted}" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </StackPanel>
+
+                            <!-- Pesan kesalahan -->
+                            <Border Background="{DynamicResource DangerTint}" BorderBrush="{DynamicResource DangerBorder}" BorderThickness="1"
+                                    CornerRadius="10" Padding="12,9" Margin="0,16,0,0" AutomationProperties.LiveSetting="Assertive">
+                                <Border.Style>
+                                    <Style TargetType="Border">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ErrorMessage}" Value="">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Border.Style>
+                                <TextBlock Text="{Binding ErrorMessage}" Foreground="{DynamicResource DangerText}" FontSize="12.5"
+                                           FontWeight="SemiBold" TextWrapping="Wrap"/>
+                            </Border>
+
+                            <Button Command="{Binding SubmitCommand}" IsDefault="True" MinHeight="48" Margin="0,20,0,0"
+                                    AutomationProperties.Name="{Binding SubmitLabel}">
+                                <Button.Style>
+                                    <Style TargetType="Button" BasedOn="{StaticResource PrimaryButton}">
+                                        <Setter Property="FontSize" Value="14"/>
+                                    </Style>
+                                </Button.Style>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding SubmitLabel}" VerticalAlignment="Center"/>
+                                    <Path Style="{StaticResource IconXs}" Data="{StaticResource IcoChevronRight}" Margin="8,0,0,0"/>
+                                </StackPanel>
+                            </Button>
+
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,18,0,0">
+                                <TextBlock Text="{Binding SwitchPrompt}" Foreground="{DynamicResource Muted}" FontSize="12.5"
+                                           VerticalAlignment="Center"/>
+                                <Button Style="{StaticResource LinkButton}" Content="{Binding SwitchLabel}"
+                                        Command="{Binding ToggleModeCommand}" Margin="4,0,0,0"/>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <!-- Akun demo siap pakai -->
+                        <Border Background="{DynamicResource Surface2}" BorderBrush="{DynamicResource Line}" BorderThickness="0,1,0,0"
+                                CornerRadius="0,0,24,24" Padding="20,16">
+                            <StackPanel>
+                                <TextBlock Text="AKUN DEMO SIAP PAKAI (KLIK UNTUK MENGISI):" FontSize="11" FontWeight="Bold"
+                                           Foreground="{DynamicResource Body2}" HorizontalAlignment="Center" Margin="0,0,0,8"/>
+                                <WrapPanel HorizontalAlignment="Center">
+                                    <Button Style="{StaticResource DemoPill}" Tag="admin" Click="OnDemoClick"
+                                            ToolTip="Isi formulir otomatis dengan akun Administrator">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Ellipse Width="8" Height="8" Fill="{DynamicResource Ok}" VerticalAlignment="Center" Margin="0,0,7,0"/>
+                                            <TextBlock Text="Admin:" FontWeight="SemiBold" FontSize="12.5" Margin="0,0,5,0"/>
+                                            <TextBlock Text="admin@akseskita.id" FontSize="12.5" Foreground="{DynamicResource Muted}"/>
+                                        </StackPanel>
+                                    </Button>
+                                    <Button Style="{StaticResource DemoPill}" Tag="warga" Click="OnDemoClick"
+                                            ToolTip="Isi formulir otomatis dengan akun Warga">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Ellipse Width="8" Height="8" Fill="{DynamicResource InfoText}" VerticalAlignment="Center" Margin="0,0,7,0"/>
+                                            <TextBlock Text="Warga:" FontWeight="SemiBold" FontSize="12.5" Margin="0,0,5,0"/>
+                                            <TextBlock Text="warga@akseskita.id" FontSize="12.5" Foreground="{DynamicResource Muted}"/>
+                                        </StackPanel>
+                                    </Button>
+                                </WrapPanel>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </Border>
+
+                <!-- Fitur aksesibilitas -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,22,0,0">
+                    <Path Style="{StaticResource IconXs}" Data="{StaticResource IcoInfo}" Stroke="#38BDF8" Margin="0,0,6,0"/>
+                    <TextBlock Text="Ramah Pembaca Layar" FontSize="12.5" Foreground="#CBD5E1"/>
+                    <TextBlock Text="•" FontSize="12.5" Foreground="#64748B" Margin="14,0"/>
+                    <Path Style="{StaticResource IconXs}" Data="{StaticResource IcoKeyboard}" Stroke="#38BDF8" Margin="0,0,6,0"/>
+                    <TextBlock Text="Navigasi Penuh Tombol Tab" FontSize="12.5" Foreground="#CBD5E1"/>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+
+        <TextBlock Grid.Row="2" Text="© 2026 AksesKita Kota Surabaya. Bersama Mewujudkan Fasilitas Publik Setara &amp; Inklusif."
+                   FontSize="12" Foreground="#94A3B8" HorizontalAlignment="Center" Margin="0,8,0,16"/>
+    </Grid>
+</UserControl>
