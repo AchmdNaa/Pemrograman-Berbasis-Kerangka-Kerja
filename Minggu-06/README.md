@@ -203,10 +203,10 @@ dotnet run
 
 | No | Skenario | Hasil yang diharapkan | Screenshot |
 |---|---|---|---|
-| 1 | Jalankan `01_create_database.sql` & `02_seed_data.sql` | Database dan tabel terbentuk di Object Explorer | _Menyusul_ <!-- ![](StudentRegistrationSql/images/01-ssms-tabel.png) --> |
-| 2 | Jalankan `03_queries.sql` | Hasil JOIN, GROUP BY, VIEW, dan stored procedure | _Menyusul_ <!-- ![](StudentRegistrationSql/images/02-ssms-query.png) --> |
-| 3 | Buka aplikasi WPF | 10 data tampil, Total Mahasiswa = 10 | _Menyusul_ <!-- ![](StudentRegistrationSql/images/03-wpf-tampil.png) --> |
-| 4 | Cari "an" dan filter prodi | Data tersaring sesuai kata kunci & prodi | _Menyusul_ <!-- ![](StudentRegistrationSql/images/04-wpf-cari.png) --> |
-| 5 | Tambah mahasiswa baru | Data muncul di tabel & Total bertambah; cek juga di SSMS | _Menyusul_ <!-- ![](StudentRegistrationSql/images/05-wpf-tambah.png) --> |
-| 6 | Hapus mahasiswa | Konfirmasi muncul, data hilang dari tabel | _Menyusul_ <!-- ![](StudentRegistrationSql/images/06-wpf-hapus.png) --> |
+| 1 | Jalankan `01_create_database.sql` & `02_seed_data.sql` | Database dan tabel terbentuk di Object Explorer | ![](StudentRegistrationSql/images/01-ssms-tabel.png) |
+| 2 | Jalankan `03_queries.sql` | Hasil JOIN, GROUP BY, VIEW, dan stored procedure | ![](StudentRegistrationSql/images/02-ssms-query.png) |
+| 3 | Buka aplikasi WPF | 10 data tampil, Total Mahasiswa = 10 | ![](StudentRegistrationSql/images/03-wpf-tampil.png) |
+| 4 | Cari "an" dan filter prodi | Data tersaring sesuai kata kunci & prodi | ![](StudentRegistrationSql/images/04-wpf-cari.png) |
+| 5 | Tambah mahasiswa baru | Data muncul di tabel & Total bertambah; cek juga di SSMS | ![](StudentRegistrationSql/images/05-wpf-tambah.png) |
+| 6 | Hapus mahasiswa | Konfirmasi muncul, data hilang dari tabel | ![](StudentRegistrationSql/images/06-wpf-hapus.png)<br>![](StudentRegistrationSql/images/06b-wpf-setelah-hapus.png) |
 | 7 | Matikan service SQL Server lalu Refresh | Muncul MessageBox "Database Error" | ![](StudentRegistrationSql/images/07-database-error.png) |
