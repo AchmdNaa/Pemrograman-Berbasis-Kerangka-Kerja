@@ -209,4 +209,4 @@ dotnet run
 | 4 | Cari "an" dan filter prodi | Data tersaring sesuai kata kunci & prodi | _Menyusul_ <!-- ![](StudentRegistrationSql/images/04-wpf-cari.png) --> |
 | 5 | Tambah mahasiswa baru | Data muncul di tabel & Total bertambah; cek juga di SSMS | _Menyusul_ <!-- ![](StudentRegistrationSql/images/05-wpf-tambah.png) --> |
 | 6 | Hapus mahasiswa | Konfirmasi muncul, data hilang dari tabel | _Menyusul_ <!-- ![](StudentRegistrationSql/images/06-wpf-hapus.png) --> |
-| 7 | Matikan service SQL Server lalu Refresh | Muncul MessageBox "Database Error" | _Menyusul_ <!-- ![](StudentRegistrationSql/images/07-database-error.png) --> |
+| 7 | Matikan service SQL Server lalu Refresh | Muncul MessageBox "Database Error" | ![](StudentRegistrationSql/images/07-database-error.png) |
