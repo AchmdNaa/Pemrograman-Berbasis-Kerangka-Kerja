@@ -167,7 +167,7 @@ private void BtnSimpan_Click(object sender, RoutedEventArgs e)
 |---|---|---|---|
 | 1 | Tampilan awal | Form kosong dan dua data contoh tampil di daftar | ![](StudentRegistration/images/01-tampilan-awal.png) |
 | 2 | NIM kosong / bukan 10 digit | Muncul peringatan validasi NIM | ![](StudentRegistration/images/02-validasi-nim.png) |
-| 3 | Prodi atau jenis kelamin belum dipilih | Muncul peringatan untuk memilih | _Menyusul_ <!-- ![](StudentRegistration/images/03-validasi-pilihan.png) --> |
+| 3 | Prodi atau jenis kelamin belum dipilih | Muncul peringatan untuk memilih | ![](StudentRegistration/images/03-validasi-pilihan.png) |
 | 4 | Semua data benar lalu **Simpan** | Pesan sukses, data baru muncul di daftar | ![](StudentRegistration/images/04-simpan-berhasil.png) |
 | 5 | NIM yang sama disimpan lagi | Peringatan "NIM sudah terdaftar" | ![](StudentRegistration/images/05-nim-duplikat.png) |
 | 6 | Pilih data, ubah, lalu **Update** | Data di daftar berubah | ![](StudentRegistration/images/06-update.png) |

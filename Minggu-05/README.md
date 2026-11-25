@@ -197,10 +197,10 @@ protected override void OnStartup(StartupEventArgs e)
 
 | No | Skenario | Hasil yang diharapkan | Screenshot |
 |---|---|---|---|
-| 1 | Tampilan awal | Dashboard berisi statistik 5 data contoh | _Menyusul_ <!-- ![](StudentManagementMVVM/images/01-dashboard.png) --> |
-| 2 | Tambah dengan NIM salah | Pesan merah "NIM harus 10 digit angka." | _Menyusul_ <!-- ![](StudentManagementMVVM/images/02-validasi.png) --> |
+| 1 | Tampilan awal | Dashboard berisi statistik 5 data contoh | ![](StudentManagementMVVM/images/01-dashboard.png) |
+| 2 | Tambah dengan NIM salah | Pesan merah "NIM harus 10 digit angka." | ![](StudentManagementMVVM/images/02-validasi.png) |
 | 3 | Tambah data valid | Data masuk tabel, statistik ikut berubah | _Menyusul_ <!-- ![](StudentManagementMVVM/images/03-tambah.png) --> |
-| 4 | Ketik di kolom pencarian | Tabel tersaring langsung | _Menyusul_ <!-- ![](StudentManagementMVVM/images/04-cari.png) --> |
-| 5 | Pilih baris lalu ubah IPK dan **Update** | Nilai dan predikat di tabel berubah | _Menyusul_ <!-- ![](StudentManagementMVVM/images/05-update.png) --> |
-| 6 | **Hapus** data terpilih | Muncul konfirmasi, data terhapus | _Menyusul_ <!-- ![](StudentManagementMVVM/images/06-hapus.png) --> |
-| 7 | Tutup lalu buka lagi aplikasi | Data terakhir masih ada (tersimpan di JSON) | _Menyusul_ <!-- ![](StudentManagementMVVM/images/07-persisten.png) --> |
+| 4 | Ketik di kolom pencarian | Tabel tersaring langsung | ![](StudentManagementMVVM/images/04-cari.png) |
+| 5 | Pilih baris lalu ubah IPK dan **Update** | Nilai dan predikat di tabel berubah | ![](StudentManagementMVVM/images/05-update.png) |
+| 6 | **Hapus** data terpilih | Muncul konfirmasi, data terhapus | ![](StudentManagementMVVM/images/06-hapus.png) |
+| 7 | Tutup lalu buka lagi aplikasi | Data terakhir masih ada (tersimpan di JSON) | ![](StudentManagementMVVM/images/07-persisten.png) |
