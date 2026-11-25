@@ -214,11 +214,11 @@ dotnet run
 
 ### Dokumentasi Tambah Data Mahasiswa (2)
 
-![Tambah data mahasiswa 2](DataMahasiswa/images/Tambah2.png)
+_Tangkapan layar menyusul_ <!-- ![Tambah data mahasiswa 2](DataMahasiswa/images/Tambah2.png) -->
 
 ### Dokumentasi Tampilkan Data
 
-![Tampilkan data mahasiswa](DataMahasiswa/images/Tampilkan.png)
+_Tangkapan layar menyusul_ <!-- ![Tampilkan data mahasiswa](DataMahasiswa/images/Tampilkan.png) -->
 
 ### Dokumentasi Cari Data (Berhasil)
 

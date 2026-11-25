@@ -1,0 +1,142 @@
+<Window x:Class="StudentRegistration.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Student Registration App — PBKK D"
+        Height="640" Width="1000" MinHeight="560" MinWidth="860"
+        WindowStartupLocation="CenterScreen"
+        Background="#F1F5F9" FontFamily="Segoe UI">
+
+    <DockPanel>
+        <!-- Header -->
+        <Border DockPanel.Dock="Top" Background="#1E293B" Padding="20,14">
+            <StackPanel>
+                <TextBlock Text="Student Registration App" Foreground="White" FontSize="20" FontWeight="Bold"/>
+                <TextBlock Text="Formulir pendaftaran mahasiswa baru — WPF (.NET)" Foreground="#94A3B8" FontSize="12"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Status bar -->
+        <Border DockPanel.Dock="Bottom" Background="White" BorderBrush="#E2E8F0" BorderThickness="0,1,0,0" Padding="16,6">
+            <TextBlock x:Name="txtStatus" Text="Siap." Foreground="{StaticResource MutedBrush}"/>
+        </Border>
+
+        <Grid Margin="16">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="360"/>
+                <ColumnDefinition Width="16"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- ===== Form input ===== -->
+            <Border Grid.Column="0" Background="White" CornerRadius="10" Padding="18" BorderBrush="#E2E8F0" BorderThickness="1">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel>
+                        <TextBlock Text="Data Mahasiswa" FontSize="16" FontWeight="Bold" Foreground="#0F172A"/>
+
+                        <TextBlock Text="NIM" Style="{StaticResource FieldLabel}"/>
+                        <TextBox x:Name="txtNim" MaxLength="10"/>
+
+                        <TextBlock Text="Nama Lengkap" Style="{StaticResource FieldLabel}"/>
+                        <TextBox x:Name="txtNama"/>
+
+                        <TextBlock Text="Program Studi" Style="{StaticResource FieldLabel}"/>
+                        <ComboBox x:Name="cmbProdi" Padding="6,4">
+                            <ComboBoxItem Content="Teknik Informatika"/>
+                            <ComboBoxItem Content="Sistem Informasi"/>
+                            <ComboBoxItem Content="Teknologi Informasi"/>
+                            <ComboBoxItem Content="Rekayasa Perangkat Lunak"/>
+                            <ComboBoxItem Content="Sains Data"/>
+                        </ComboBox>
+
+                        <TextBlock Text="Jenis Kelamin" Style="{StaticResource FieldLabel}"/>
+                        <StackPanel Orientation="Horizontal">
+                            <RadioButton x:Name="rbLaki" Content="Laki-laki" GroupName="Gender" Margin="0,0,20,0"/>
+                            <RadioButton x:Name="rbPerempuan" Content="Perempuan" GroupName="Gender"/>
+                        </StackPanel>
+
+                        <TextBlock Text="Tanggal Lahir" Style="{StaticResource FieldLabel}"/>
+                        <DatePicker x:Name="dpTanggalLahir"/>
+
+                        <TextBlock Text="Email (opsional)" Style="{StaticResource FieldLabel}"/>
+                        <TextBox x:Name="txtEmail"/>
+
+                        <TextBlock Text="Alamat" Style="{StaticResource FieldLabel}"/>
+                        <TextBox x:Name="txtAlamat" Height="60" TextWrapping="Wrap" AcceptsReturn="True"
+                                 VerticalScrollBarVisibility="Auto"/>
+
+                        <CheckBox x:Name="chkSetuju" Content="Data yang saya isi sudah benar" Margin="0,12,0,12"/>
+
+                        <WrapPanel>
+                            <Button x:Name="btnSimpan" Content="Simpan" Background="{StaticResource SuccessBrush}"
+                                    Style="{StaticResource ActionButton}" Click="BtnSimpan_Click"/>
+                            <Button x:Name="btnUpdate" Content="Update" Background="{StaticResource WarningBrush}"
+                                    Style="{StaticResource ActionButton}" Click="BtnUpdate_Click" IsEnabled="False"/>
+                            <Button x:Name="btnHapus" Content="Hapus" Background="{StaticResource DangerBrush}"
+                                    Style="{StaticResource ActionButton}" Click="BtnHapus_Click" IsEnabled="False"/>
+                            <Button x:Name="btnReset" Content="Reset" Background="{StaticResource MutedBrush}"
+                                    Style="{StaticResource ActionButton}" Click="BtnReset_Click"/>
+                        </WrapPanel>
+                    </StackPanel>
+                </ScrollViewer>
+            </Border>
+
+            <!-- ===== Daftar mahasiswa ===== -->
+            <Border Grid.Column="2" Background="White" CornerRadius="10" Padding="18" BorderBrush="#E2E8F0" BorderThickness="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <DockPanel Grid.Row="0">
+                        <TextBlock x:Name="txtJumlah" DockPanel.Dock="Right" VerticalAlignment="Center"
+                                   Foreground="{StaticResource MutedBrush}" Text="0 mahasiswa"/>
+                        <TextBlock Text="Daftar Mahasiswa Terdaftar" FontSize="16" FontWeight="Bold" Foreground="#0F172A"/>
+                    </DockPanel>
+
+                    <Grid Grid.Row="1" Margin="0,12,0,12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox x:Name="txtCari" Grid.Column="0" Margin="0,0,8,0" KeyDown="TxtCari_KeyDown"
+                                 ToolTip="Cari berdasarkan NIM, nama, atau program studi"/>
+                        <Button Grid.Column="1" Content="Cari" Background="{StaticResource PrimaryBrush}"
+                                Style="{StaticResource ActionButton}" Margin="0,0,8,0" Click="BtnCari_Click"/>
+                        <Button Grid.Column="2" Content="Tampilkan Semua" Background="{StaticResource MutedBrush}"
+                                Style="{StaticResource ActionButton}" Margin="0" Click="BtnTampilSemua_Click"/>
+                    </Grid>
+
+                    <ListBox x:Name="lstMahasiswa" Grid.Row="2" BorderBrush="#E2E8F0"
+                             SelectionChanged="LstMahasiswa_SelectionChanged">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="4,6">
+                                    <TextBlock FontWeight="SemiBold" Foreground="#0F172A">
+                                        <Run Text="{Binding Nama}"/>
+                                        <Run Text=" — " Foreground="#94A3B8"/>
+                                        <Run Text="{Binding Nim}" Foreground="#2563EB"/>
+                                    </TextBlock>
+                                    <TextBlock Foreground="#64748B" FontSize="12">
+                                        <Run Text="{Binding ProgramStudi}"/>
+                                        <Run Text=" · "/>
+                                        <Run Text="{Binding JenisKelamin}"/>
+                                        <Run Text=" · "/>
+                                        <Run Text="{Binding Usia, Mode=OneWay}"/>
+                                        <Run Text=" tahun"/>
+                                    </TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+                    <TextBlock Grid.Row="3" Margin="0,10,0,0" Foreground="{StaticResource MutedBrush}" FontSize="12"
+                               Text="Klik salah satu data untuk mengedit atau menghapusnya."/>
+                </Grid>
+            </Border>
+        </Grid>
+    </DockPanel>
+</Window>
