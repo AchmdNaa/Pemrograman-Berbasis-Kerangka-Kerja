@@ -9,3 +9,4 @@ obj/
 # Dependensi & konfigurasi lokal (PHP/Laravel/CodeIgniter)
 node_modules/
 .env
+.vs/
