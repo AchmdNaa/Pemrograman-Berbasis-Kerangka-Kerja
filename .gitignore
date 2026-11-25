@@ -2,3 +2,10 @@ bin/
 obj/
 .vscode/
 .DS_Store
+
+# Arsip lokal
+*.zip
+
+# Dependensi & konfigurasi lokal (PHP/Laravel/CodeIgniter)
+node_modules/
+.env

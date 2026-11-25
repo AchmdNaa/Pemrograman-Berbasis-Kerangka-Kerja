@@ -18,3 +18,7 @@ Repositori kumpulan tugas dan praktikum mata kuliah Pemrograman Berbasis Kerangk
 | 9 | Framework CodeIgniter 4 — Latihan 1 & 2 (SIAKAD + Toko Online) | [Minggu-09](Minggu-09) |
 | 10 | MVC & Routing CodeIgniter 4 — ShopEase | [Minggu-10](Minggu-10) |
 | 11 | Authentication System & Model — ShopEase | [Minggu-11](Minggu-11) |
+| 12 | Model & CRUD dalam CodeIgniter — Product Management ShopEase + data karyawan | [Minggu-12](Minggu-12) |
+| 13 | Quiz CodeIgniter — Aplikasi Pemesanan Tiket Bus (TiketBus) | [Minggu-13](Minggu-13) |
+| 14 | Framework Laravel · CRUD Laravel 1 & 2 — Data Siswa | [Minggu-14](Minggu-14) |
+| 15 | Latihan Studi Kasus Laravel — Aplikasi Kasir (KasirKu) | [Minggu-15](Minggu-15) |

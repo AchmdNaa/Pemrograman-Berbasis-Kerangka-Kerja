@@ -1,0 +1,31 @@
+<?php
+
+// Pesan validasi berbahasa Indonesia (menimpa bawaan CodeIgniter).
+return [
+    'required'              => '{field} wajib diisi.',
+    'min_length'            => '{field} minimal {param} karakter.',
+    'max_length'            => '{field} maksimal {param} karakter.',
+    'exact_length'          => '{field} harus tepat {param} karakter.',
+    'numeric'               => '{field} harus berupa angka.',
+    'integer'               => '{field} harus berupa bilangan bulat.',
+    'decimal'               => '{field} harus berupa angka desimal.',
+    'is_natural'            => '{field} harus berupa angka positif.',
+    'is_natural_no_zero'    => '{field} harus berupa angka lebih dari nol.',
+    'greater_than'          => '{field} harus lebih besar dari {param}.',
+    'greater_than_equal_to' => '{field} minimal {param}.',
+    'less_than_equal_to'    => '{field} maksimal {param}.',
+    'valid_email'           => '{field} harus berupa alamat email yang valid.',
+    'is_unique'             => '{field} sudah terdaftar.',
+    'in_list'               => '{field} harus salah satu dari: {param}.',
+    'matches'               => '{field} tidak sama dengan {param}.',
+    'alpha_space'           => '{field} hanya boleh berisi huruf dan spasi.',
+    'regex_match'           => 'Format {field} tidak valid.',
+    'uploaded'              => '{field} wajib diunggah.',
+    'max_size'              => 'Ukuran {field} terlalu besar (maks {param} KB).',
+    'is_image'              => '{field} harus berupa gambar.',
+    'mime_in'               => 'Tipe file {field} tidak diizinkan.',
+    'ext_in'                => 'Ekstensi file {field} tidak diizinkan.',
+    'max_dims'              => 'Dimensi {field} terlalu besar.',
+    'is_not_unique'         => '{field} tidak ditemukan.',
+    'valid_date'            => '{field} harus berupa tanggal yang valid.',
+];

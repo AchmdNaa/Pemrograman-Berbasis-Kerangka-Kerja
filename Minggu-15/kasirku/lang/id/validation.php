@@ -1,0 +1,36 @@
+<?php
+
+// Pesan validasi Bahasa Indonesia (APP_LOCALE=id)
+return [
+    'after'      => ':Attribute harus tanggal setelah :date.',
+    'before'     => ':Attribute harus tanggal sebelum :date.',
+    'between'    => ['numeric' => ':Attribute harus di antara :min dan :max.'],
+    'date'       => ':Attribute bukan tanggal yang valid.',
+    'digits'     => ':Attribute harus :digits digit angka.',
+    'email'      => ':Attribute harus berupa alamat email yang valid.',
+    'exists'     => ':Attribute yang dipilih tidak valid.',
+    'image'      => ':Attribute harus berupa gambar.',
+    'in'         => ':Attribute yang dipilih tidak valid.',
+    'integer'    => ':Attribute harus berupa bilangan bulat.',
+    'max'        => ['file' => ':Attribute maksimal :max kilobyte.', 'numeric' => ':Attribute maksimal :max.', 'string' => ':Attribute maksimal :max karakter.'],
+    'mimes'      => ':Attribute harus berupa file bertipe: :values.',
+    'min'        => ['file' => ':Attribute minimal :min kilobyte.', 'numeric' => ':Attribute minimal :min.', 'string' => ':Attribute minimal :min karakter.'],
+    'numeric'    => ':Attribute harus berupa angka.',
+    'regex'      => 'Format :attribute tidak valid.',
+    'required'   => ':Attribute wajib diisi.',
+    'string'     => ':Attribute harus berupa teks.',
+    'unique'     => ':Attribute sudah terdaftar.',
+    'uploaded'   => ':Attribute gagal diunggah.',
+    'confirmed'  => 'Konfirmasi :attribute tidak cocok.',
+    'alpha_dash' => ':Attribute hanya boleh berisi huruf, angka, tanda hubung, dan garis bawah.',
+    'gte'        => ['numeric' => ':Attribute harus lebih besar atau sama dengan :value.'],
+    'distinct'   => ':Attribute memiliki nilai duplikat.',
+    'array'      => ':Attribute harus berupa daftar.',
+    'password'   => [
+        'letters' => ':Attribute harus mengandung minimal satu huruf.',
+        'numbers' => ':Attribute harus mengandung minimal satu angka.',
+        'mixed'   => ':Attribute harus mengandung huruf besar dan huruf kecil.',
+        'symbols' => ':Attribute harus mengandung minimal satu simbol.',
+    ],
+    'attributes' => [],
+];
